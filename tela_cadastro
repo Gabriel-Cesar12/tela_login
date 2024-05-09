@@ -1,0 +1,60 @@
+from kivy.app import App
+from kivy.uix.label import Label
+from kivy.uix.button import Button
+from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.textinput import TextInput
+from kivy.core.window import Window
+from kivy.uix.image import AsyncImage
+from kivy.utils import get_color_from_hex
+
+Window.size = (900, 600)
+
+class CadastroApp(App):
+    def build(self):
+        Window.clearcolor=('229a00')
+
+    def build(self):
+        flo=FloatLayout()
+        
+        nome = TextInput(
+            text='Seu nome', size_hint=(.2, .1), pos=(770, 650)
+            )
+        flo.add_widget(nome)
+
+        phone = TextInput(
+            text='Digite seu telefone', size_hint=(.2, .1), pos=(770, 550)
+        )
+        flo.add_widget(phone)
+
+        email = TextInput(
+            text='Digite seu Email', size_hint=(.2, .1), pos=(770, 450)
+        )
+        flo.add_widget(email)
+
+        senha = TextInput(
+            text='Crie sua senha', size_hint=(.2, .1), pos=(770, 350)
+        )
+        flo.add_widget(senha)
+
+        b2 = Button(
+            text='Cadastrar', size_hint = (.3, .1),
+            pos_hint = {'center_x':.5, 'center_y':.20},
+            on_press = self.cadastrar
+        )
+
+        self.label_cadastrar = Label(
+            pos_hint = {'center_x': .50, 'center_y': .30}, 
+            color = [1,1,1,1]
+        )
+
+        flo.add_widget(b2)
+        flo.add_widget(self.label_cadastrar)
+
+        return flo
+
+    def cadastrar(self, instance):
+        N = self.nome.text
+        mensagem = f'O Login {N} cadastrou minha fera!'
+        self.label_cadastrar.text = mensagem
+
+CadastroApp().run()
